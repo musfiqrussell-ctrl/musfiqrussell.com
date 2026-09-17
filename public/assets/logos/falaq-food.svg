@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" width="100%" height="100%">
+  <!-- Outer Green Circle Boundary -->
+  <circle cx="140" cy="140" r="130" fill="none" stroke="#109648" stroke-width="8" />
+
+  <!-- Inner Filled Circle with Dual Leaves -->
+  <g transform="translate(140, 105)">
+    <circle cx="0" cy="0" r="64" fill="#109648" />
+    
+    <!-- White Leaves -->
+    <!-- Left smaller leaf -->
+    <path d="M -8,22 C -32,12 -38,-16 -18,-34 C -12,-8 -2,12 -8,22 Z" fill="#FFFFFF" />
+    <!-- Right larger leaf with stem curve -->
+    <path d="M -12,28 C -4,-18 12,-48 38,-44 C 42,-8 22,22 -12,28 Z" fill="#FFFFFF" />
+    <!-- Leaf vein separation -->
+    <path d="M -12,28 C 4,-2 18,-24 34,-40" stroke="#109648" stroke-width="3" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- Falaq Food Text -->
+  <g transform="translate(140, 215)">
+    <text x="-8" y="0" 
+          font-family="Arial, Helvetica, sans-serif" 
+          font-size="34" 
+          font-weight="900" 
+          fill="#111827" 
+          text-anchor="end">Falaq</text>
+    <text x="2" y="0" 
+          font-family="Arial, Helvetica, sans-serif" 
+          font-size="34" 
+          font-weight="900" 
+          fill="#109648" 
+          text-anchor="start">Food</text>
+  </g>
+</svg>

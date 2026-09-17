@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Hind Siliguri', 'Noto Sans Bengali', 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-bengali: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+    --font-latin: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    --bg-page: #09090b;
+    --bg-card: #18181b;
+    --bg-card-subtle: #27272a;
+    --bg-tag: #27272a;
+    --border-card: #27272a;
+    --border-card-subtle: #3f3f46;
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --accent-red: #e11d48;
+    --accent-red-hover: #f43f5e;
+  }
+
+  html.light, [data-theme="day"] {
+    --bg-page: #fafafa;
+    --bg-card: #ffffff;
+    --bg-card-subtle: #f4f4f5;
+    --bg-tag: #e4e4e7;
+    --border-card: #e4e4e7;
+    --border-card-subtle: #d4d4d8;
+    --text-primary: #18181b;
+    --text-secondary: #27272a;
+    --text-muted: #71717a;
+    --accent-red: #e11d48;
+    --accent-red-hover: #be123c;
+  }
+  
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    line-height: 1.625; /* balanced relaxed body line-height to prevent Bengali diacritic vertical clipping */
+    font-feature-settings: "kern" 1, "liga" 1, "clig" 1;
+  }
+
+  /* Bengali Typography & Diacritic Resilience Rules */
+  /* Prevent Bengali conjunct character breakage (যুক্তাক্ষর বিকৃতি) and diacritic clipping */
+  [lang="bn"],
+  .bengali-text,
+  .font-bengali {
+    font-family: var(--font-bengali);
+    letter-spacing: normal !important;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  /* Ensure headings never clip Bengali upper ascenders (কার, মাত্রা, রেফ, চন্দ্রবিন্দু) */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  /* Short badges, tags, and category chips must not break mid-word */
+  .badge-chip,
+  .tag-pill {
+    white-space: nowrap;
+    line-height: 1.4;
+    letter-spacing: normal;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-card);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-red);
+}
+
+/* Mobile Drawer custom smooth scrollbar */
+.drawer-scroll-container {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 transparent;
+}
+
+.drawer-scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.drawer-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drawer-scroll-container::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 9999px;
+}
+
+.drawer-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #f43f5e;
+}
+
+/* Day/Night utility classes */
+.theme-canvas {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+}
+
+.theme-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-card);
+  color: var(--text-primary);
+}
+
+.theme-card-subtle {
+  background-color: var(--bg-card-subtle);
+  border-color: var(--border-card);
+  color: var(--text-secondary);
+}
+
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-text-muted {
+  color: var(--text-muted);
+}
+
+.theme-border {
+  border-color: var(--border-card);
+}
+
+/* Day mode specific adjustments */
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .text-gradient-red {
+  background: linear-gradient(135deg, #0f172a 0%, #be123c 50%, #e11d48 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .text-gradient-silver {
+  background: linear-gradient(135deg, #0f172a 0%, #334155 50%, #64748b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Night mode glassmorphism */
+html.dark .glass-panel, :root:not(.light) .glass-panel {
+  background: rgba(19, 21, 27, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(225, 29, 72, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(225, 29, 72, 0.12);
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #ffffff 0%, #fca5a5 50%, #e11d48 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-silver {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Keyboard accessibility outline */
+:focus-visible {
+  outline: 2px solid #e11d48;
+  outline-offset: 2px;
+}
